@@ -1,0 +1,12 @@
+D:\MyProg\C#\MyLang\ObjectScript\bin\Release\Column.dll
+D:\MyProg\C#\MyLang\ObjectScript\bin\Release\Column.pdb
+D:\MyProg\C#\MyLang\ObjectScript\obj\Release\Column.csproj.AssemblyReference.cache
+D:\MyProg\C#\MyLang\ObjectScript\obj\Release\Column.csproj.CoreCompileInputs.cache
+D:\MyProg\C#\MyLang\ObjectScript\obj\Release\Column.dll
+D:\MyProg\C#\MyLang\ObjectScript\obj\Release\Column.pdb
+D:\MyProg\C#\MyLang\Column\bin\Release\Column.dll
+D:\MyProg\C#\MyLang\Column\bin\Release\Column.pdb
+D:\MyProg\C#\MyLang\Column\obj\Release\Column.csproj.CoreCompileInputs.cache
+D:\MyProg\C#\MyLang\Column\obj\Release\Column.dll
+D:\MyProg\C#\MyLang\Column\obj\Release\Column.pdb
+D:\MyProg\C#\MyLang\Column\obj\Release\Column.csproj.AssemblyReference.cache

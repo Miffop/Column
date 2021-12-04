@@ -1,0 +1,8 @@
+﻿!meth $Sqr(#a)
+//
+	#Result::#a*#a;
+\\
+
+@Console|WriteLine(@Sqr(1.4%1.0));
+
+@Console|ReadKey();

@@ -1,0 +1,21 @@
+﻿
+!for(#i::1;#i<31;#i::#i+1;)
+//
+	#i|Fizz::#i%3==0;
+	#i|Buzz::#i%5==0;
+
+	!if(#i|Fizz)
+	//
+		@Console|Write("Fizz");
+	\\
+	!if(#i|Buzz)
+	//
+		@Console|Write("Buzz");
+	\\
+	!if(~~(#i|Fizz..#i|Buzz))
+	//
+		@Console|Write(#i);	
+	\\
+	@Console|WriteLine();
+\\
+@Console|ReadKey();

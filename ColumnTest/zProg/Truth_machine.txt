@@ -1,0 +1,11 @@
+﻿#k::@Console|ReadKey();
+
+!while(1)
+//
+	@Console|WriteChar(#k);
+	!if(#k=='0')
+	//
+		!break;
+	\\
+\\
+@Console|ReadKey();

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1163CE0-A3A8-41B6-ACB0-1CE1A84C1D87}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Column</RootNamespace>
+    <AssemblyName>Column</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ColumnData.cs" />
+    <Compile Include="ColumnFunc.cs" />
+    <Compile Include="ColumnLib.cs" />
+    <Compile Include="ColumnProgram.cs" />
+    <Compile Include="Contex.cs" />
+    <Compile Include="Debugger.cs" />
+    <Compile Include="Parsing\Label.cs" />
+    <Compile Include="Parsing\Parser.cs" />
+    <Compile Include="Parsing\SudoCode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StdLib.cs" />
+    <Compile Include="Struct\Block.cs" />
+    <Compile Include="Struct\BlockDo.cs" />
+    <Compile Include="Struct\Command.cs" />
+    <Compile Include="Struct\Commands\DoCommand.cs" />
+    <Compile Include="Struct\Commands\FlagCommand.cs" />
+    <Compile Include="Struct\Commands\CondCommand.cs" />
+    <Compile Include="Struct\Commands\RunCom.cs" />
+    <Compile Include="Struct\Commands\SetCom.cs" />
+    <Compile Include="Struct\Commands\WhileCommand.cs" />
+    <Compile Include="Struct\Exp\BitwizeExp.cs" />
+    <Compile Include="Struct\Exp\LogicaExp.cs" />
+    <Compile Include="Struct\Exp\LogicExp.cs" />
+    <Compile Include="Struct\Exp\MethExp.cs" />
+    <Compile Include="Struct\Exp\SpecExp.cs" />
+    <Compile Include="Struct\Exp\MathsExp.cs" />
+    <Compile Include="Struct\IExp.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
