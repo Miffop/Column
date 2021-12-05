@@ -1,11 +1,9 @@
 ﻿#k::@Console|ReadKey();
 
-!while(1)
+!repeat
 //
 	@Console|WriteChar(#k);
-	!if(#k=='0')
-	//
-		!break;
-	\\
 \\
+!while(#k=='1');
+
 @Console|ReadKey();

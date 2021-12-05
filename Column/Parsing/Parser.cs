@@ -448,6 +448,52 @@ namespace Column.Parsing
                         Code.Add(new TryCommand(TryBlock, CatchBlock));
                         i--;
                     }
+                    else if(SC[i].Args=="repeat")
+                    {
+                        i++;
+                        if (SC[i].Command != "Brace" || SC[i].Args != "/")
+                        {
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "// expected");
+                        }
+                        int Idx = i + 1;
+                        int j = FindSizeOfCodeInBraces(SC, ref i);
+                        BlockDo LoopBody = null;
+                        try
+                        {
+                            Contex ctx = new Contex(c, db);
+                            LoopBody = new BlockDo(ctx, ParseBlock(SC.SubCode(Idx, j), ctx, db));
+                        }
+                        catch
+                        {
+                            db.Error("Line " + SC[Idx].Line + ": Parsing Error: " + "cannot parse codeblock");
+                        }
+                        if (SC[i].Command != "Ctrl" || SC[i].Args != "while")
+                        {
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "while expected");
+                        }
+                        i++;
+                        if (SC[i].Command != "Brace" || SC[i].Args != "(")
+                        {
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "'(' expected");
+                        }
+                        Idx = i + 1;
+                        j = FindSizeOfCodeInBraces(SC, ref i);
+                        IExp Cond = null;
+                        try
+                        {
+                            Cond = ParseExp(SC.SubCode(Idx, j), c, db);
+                        }
+                        catch
+                        {
+                            db.Error("Line " + SC[Idx].Line + ": Parsing Error: " + "cannot parse condition");
+                        }
+                        if (SC[i].Command != ";")
+                        {
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "';' expected");
+                        }
+                        Code.Add(new DoCommand(LoopBody));
+                        Code.Add(new WhileCommand(Cond, LoopBody));
+                    }
                     else
                     {
                         db.Error("Line " + SC[i].Line + ": Parsing Error: " +"unknown operator \"" + SC[i].Args+"\"");
