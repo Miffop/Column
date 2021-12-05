@@ -1,0 +1,113 @@
+Variables:
+#<variableName>::<valueOrExpression>;
+#<varName>|<subVarName>::<valueOrExpresion>;
+#<varName>|(<ExpresionReturningSubVatName>)::<valueOrExprsion>;
+#<varName>|<subVarName1>|<subVarName2>::<valueOrExpresion>;
+
+Literals:
+"someString"-string
+'c'-charecter
+383 - integer
+3.14 - real
+
+Operations:
+  + add
+  - subract
+  * multiply
+  / divide
+  % module
+  _ negate
+  ** power
+  == equal
+  != not equal
+  > greater
+  < less
+  >= greater or equal
+  <= less or equal
+  << shl
+  >> shr
+  & bitwise and
+  . bitwise or
+  ^ bitwise xor
+  ~ bitwise not
+  && logic and
+  .. logic or
+  ^^ logic xor
+  ~~ logic not
+
+Operations order:
+  1)()
+  2)~,~~,_
+  3)**
+  4)*,/,%
+  5)+,-
+  6)<<,>>
+  7)<,<=,>,>=
+  8)==,!=
+  9)&
+  10)^
+  11).
+  12)&&
+  13)^^
+  14)..
+
+Operators:
+  !if(<condition1>)
+  //
+    <...>
+  \\
+  !else !if(<condition2>)
+  //
+    <...>
+  \\
+  !else
+  //
+    <...>
+  \\
+  
+  !while(<condition>)
+  //
+    <...>
+  \\
+  
+  !for(<counterInit>;<condition>;<counterIncrement>;)
+  //
+    <...>
+  \\
+  
+  !repeat
+  //
+    <...>
+  \\
+  !while(<condition>)
+  
+  !try
+  //
+    <...>
+  \\
+  !catch
+  //
+    <...>
+  \\
+  
+  !break - break out of the cycle
+  !continue -move to the next iteration of the cycle
+  !nop - do nothing
+
+Methods:
+  !meth $<methodName1>(#<argument1>,#<argument2>,...)//Creating method
+  //
+     <...>
+     !meth $<methodName2>()
+     //
+        <...>
+     \\
+     <...>
+     Result::<someExpression>;
+  \\
+  @<methodName1>(<someExpression1>,<someExpression2>,<someExpression3>,...);//method Call
+
+Comments:
+  {someComment}
+  <...>
+  {otherComment}
