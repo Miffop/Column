@@ -1,0 +1,19 @@
+﻿
+!meth $F|1()//@Console|WriteLine("Hello");\\
+!meth $F|2()//@Console|WriteLine("World");\\
+!meth $F|3()//@Console|WriteLine("Haven");\\
+{notice method F|4 doesn't exist}
+!meth $F|5()//@Console|WriteLine("Hell");\\
+#i::1;
+!for(#i::1;#i<=5;#i::#i+1;)
+//
+	!try
+	//
+		@F|(#i)();
+	\\
+	!catch
+	//
+		@Console|WriteLine("Error: method F|",#i," doesn't exists");
+	\\
+\\
+@Console|ReadKey();

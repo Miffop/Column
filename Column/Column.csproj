@@ -55,6 +55,7 @@
     <Compile Include="Struct\Commands\CondCommand.cs" />
     <Compile Include="Struct\Commands\RunCom.cs" />
     <Compile Include="Struct\Commands\SetCom.cs" />
+    <Compile Include="Struct\Commands\TryCommand.cs" />
     <Compile Include="Struct\Commands\WhileCommand.cs" />
     <Compile Include="Struct\Exp\BitwizeExp.cs" />
     <Compile Include="Struct\Exp\LogicaExp.cs" />

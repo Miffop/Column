@@ -26,5 +26,9 @@ namespace Column
             ErrorMessage.Push(Error);
             throw new Exception();
         }
+        public void ClearErrors()
+        {
+            ErrorMessage.Clear();
+        }
     }
 }

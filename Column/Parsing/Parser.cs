@@ -250,7 +250,7 @@ namespace Column.Parsing
                         i++;
                         if (SC[i].Command != "Brace" || SC[i].Args != "/")
                         {
-                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "'/' expected");
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "'//' expected");
                         }
                         int Idx = i + 1;
                         int j = FindSizeOfCodeInBraces(SC, ref i);
@@ -388,7 +388,7 @@ namespace Column.Parsing
                         i++;
                         if (SC[i].Command != "Brace" || SC[i].Args != "/")
                         {
-                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "'/' expected");
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "'//' expected");
                         }
                         Idx = i + 1;
                         j = FindSizeOfCodeInBraces(SC, ref i);
@@ -404,6 +404,48 @@ namespace Column.Parsing
                         }
                         block.Code.AddRange(Inc);
                         Code.Add(new WhileCommand(Cond,block));
+                        i--;
+                    }
+                    else if(SC[i].Args=="try")
+                    {
+                        i++;
+                        if(SC[i].Command!="Brace" || SC[i].Args!="/")
+                        {
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "// expected");
+                        }
+                        int Idx = i + 1;
+                        int j = FindSizeOfCodeInBraces(SC, ref i);
+                        Command TryBlock=null;
+                        try
+                        {
+                            Contex ctx = new Contex(c, db);
+                            TryBlock = new DoCommand(new BlockDo(ctx, ParseBlock(SC.SubCode(Idx, j), ctx, db)));
+                        }
+                        catch
+                        {
+                            db.Error("Line " + SC[Idx].Line + ": Parsing Error: " + "cannot parse codeblock");
+                        }
+                        Command CatchBlock = null;
+                        if(SC[i].Command=="Ctrl" && SC[i].Args=="catch")
+                        {
+                            i++;
+                            if (SC[i].Command != "Brace" || SC[i].Args != "/")
+                            {
+                                db.Error("Line " + SC[i].Line + ": Parsing Error: " + "// expected");
+                            }
+                            Idx = i + 1;
+                            j = FindSizeOfCodeInBraces(SC, ref i);
+                            try
+                            {
+                                Contex ctx = new Contex(c, db);
+                                CatchBlock = new DoCommand(new BlockDo(ctx, ParseBlock(SC.SubCode(Idx, j), ctx, db)));
+                            }
+                            catch
+                            {
+                                db.Error("Line " + SC[Idx].Line + ": Parsing Error: " + "cannot parse codeblock");
+                            }
+                        }
+                        Code.Add(new TryCommand(TryBlock, CatchBlock));
                         i--;
                     }
                     else
