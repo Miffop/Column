@@ -1,27 +1,27 @@
 ﻿
 !meth $A(#i)
-/
+//
 	!meth $B(#i)
-	/
+	//
 		!meth $C(#i)
-		/
+		//
 			!meth $D(#i)
-			/
+			//
 				!meth $E(#i)
-				/
+				//
 					!meth $F(#i)
-					/
-						#Result::#i[+]1;
-					\
-					#Result::@F(#i)[+]1;
-				\
-				#Result::@E(#i)[+]1;
-			\
-			#Result::@D(#i)[+]1;
-		\
-		#Result::@C(#i)[+]1;
-	\
-	#Result::@B(#i)[+]1;
-\
+					//
+						#Result::#i+1;
+					\\
+					#Result::@F(#i)+1;
+				\\
+				#Result::@E(#i)+1;
+			\\
+			#Result::@D(#i)+1;
+		\\
+		#Result::@C(#i)+1;
+	\\
+	#Result::@B(#i)+1;
+\\
 @Console|WriteLine(@A(1));
 @Console|ReadKey();
