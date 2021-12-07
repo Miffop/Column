@@ -1,0 +1,47 @@
+﻿
+#Mode::_1;
+!repeat
+//
+	@Console|WriteLine("To encrypt message press 'e'");
+	@Console|WriteLine("To dencrypt message press 'd'");
+	#Mode::@Console|ReadKey();
+	!if(#Mode=='e')
+	//
+		#Mode::1;
+	\\
+	!else !if(#Mode=='d')
+	//
+		#Mode::_1;
+	\\
+	!else
+	//
+		#Mode::0;
+	\\
+	@Console|Clear();
+\\
+!while(~~#Mode);
+
+
+@Console|WriteLine("Write the Message");
+#mes::@Console|ReadLine();
+
+#res::"";
+!for(#i::0;#i<@String|Length(#mes);#i::#i+1;)
+//
+	#Cur::@String|Char(#mes,#i);
+	!if(@Char|IsLetter(#Cur))
+	//
+		#min::'a';
+		#dif::'z'-'a'+1;
+		!if(@Char|IsUpper(#Cur))
+		//
+			#min::'A';
+		\\
+		#Cur::(#Cur-#min+2*#Mode)%#dif+#min;
+	\\
+	#res::#res+#Cur;
+\\
+@Console|WriteLine("Result:");
+@Console|WriteLine(#res);
+
+@Console|ReadKey();

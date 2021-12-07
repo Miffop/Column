@@ -1,0 +1,15 @@
+﻿
+@Console|WriteLine(""+'H'+'e'+'l'+'l'+48);
+@Console|WriteLine(""+'H'+'e'+'l'+'l'+@String(48));
+@Console|WriteLine("ASCII value of 'H': "+@String('H'));
+
+{be carefull}
+#y::123;
+@Console|WriteLine("y="+#y);{don't do it}
+@Console|WriteLine("y="+@String(#y));{do it this way}
+@Console|WriteLine("y=",#y);{do or this}
+
+
+
+
+@Console|ReadKey();

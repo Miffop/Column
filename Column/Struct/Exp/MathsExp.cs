@@ -19,7 +19,20 @@ namespace Column.Struct.Exp
             {
                 if (a is string || b is string)
                 {
-                    return a.ToString() + b.ToString();
+                    if (a is int)
+                    {
+                        char cha = (char)(int)a;
+                        return cha + b.ToString();
+                    }
+                    else if (b is int)
+                    {
+                        char chb = (char)(int)b;
+                        return a.ToString() + chb;
+                    }
+                    else
+                    {
+                        return a.ToString() + b.ToString();
+                    }
                 }
                 else if (a is double || b is double)
                 {

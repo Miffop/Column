@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Goals.txt" />
+    <Content Include="zProg\Sezar.txt" />
     <Content Include="zProg\Fact_Fib.txt" />
+    <Content Include="zProg\CharTest.txt" />
     <Content Include="zProg\FloatTest.txt" />
     <Content Include="zProg\FizzBuzz.txt" />
     <Content Include="zProg\Madness.txt" />

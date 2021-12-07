@@ -16,7 +16,7 @@ namespace ColumnTest
         {
             //Пример интерпретатора Column
             Console.Title = "";
-            if(args.Length!=0)
+            if (args.Length!=0)
             {
                 StreamReader Rd;
                 if(!File.Exists(args[0]))
