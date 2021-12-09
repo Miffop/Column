@@ -16,6 +16,10 @@ namespace ColumnTest
         {
             //Пример интерпретатора Column
             Console.Title = "";
+            args = new string[]
+            {
+                "D:/MyProg/Git/ColumnLanguage/ColumnTest/zProg/PointerTest.txt"
+            };
             if (args.Length!=0)
             {
                 StreamReader Rd;

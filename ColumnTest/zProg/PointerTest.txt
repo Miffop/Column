@@ -1,0 +1,9 @@
+﻿
+#i::4;
+#iPtr :: :i;
+
+@Console|WriteLine(#i);
+@Console|WriteLine(=iPtr);
+@Console|WriteLine(=#iPtr);
+
+@Console|ReadKey();

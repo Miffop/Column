@@ -67,11 +67,11 @@ namespace Column.Struct.Exp
     }
     class FuncExp : IExp
     {
-        IExp LeGovnoFunction;
+        IExp LeMethod;
         IExp[] Args;
-        public FuncExp(IExp gf, IExp[] args, int ln)
+        public FuncExp(IExp lm, IExp[] args, int ln)
         {
-            this.LeGovnoFunction = gf;
+            this.LeMethod = lm;
             this.Args = args;
             this.Line = ln;
         }
@@ -80,7 +80,7 @@ namespace Column.Struct.Exp
             string Fname=null;
             try
             {
-                Fname = LeGovnoFunction.Eval(c) as string;
+                Fname = LeMethod.Eval(c) as string;
             }
             catch
             {

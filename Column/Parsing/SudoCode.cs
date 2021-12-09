@@ -111,7 +111,26 @@ namespace Column.Parsing
                     else if (Code[i] == ':')
                     {
                         i++;
-                        if (Code[i] == ':') Res.Add("::", "");
+                        if (Code[i] == ':')
+                        {
+                            Res.Add("::", "");
+                        }
+                        else if(Char.IsLetterOrDigit(Code[i]))
+                        {
+                            string name = "";
+                            while (Char.IsLetterOrDigit(Code[i]))
+                            {
+                                name += Code[i];
+                                i++;
+                            }
+                            i--;
+                            Res.Add("Ptr", name);
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
+
                     }
                     else if (Code[i] == '$')
                     {
@@ -230,7 +249,7 @@ namespace Column.Parsing
                         name = name.Replace("\\n", "\n");
                         name = name.Replace("\\a", "\'");
                         name = name.Replace("\\d", "\"");
-                        if(name.Length!=1)
+                        if (name.Length != 1)
                         {
                             db.Error("Line " + Res.Line + ": Parsing Error: " + "cannot parse character");
                         }
@@ -279,17 +298,17 @@ namespace Column.Parsing
                         Res.Add("Word", name);
                     }
                     //Operations
-                    else if(Code[i]=='+')
+                    else if (Code[i] == '+')
                     {
                         Res.Add("Oper", "+");
                     }
-                    else if(Code[i]=='-')
+                    else if (Code[i] == '-')
                     {
                         Res.Add("Oper", "-");
                     }
-                    else if(Code[i]=='*')
+                    else if (Code[i] == '*')
                     {
-                        if(Code[i+1]=='*')
+                        if (Code[i + 1] == '*')
                         {
                             Res.Add("Oper", "**");
                             i++;
@@ -299,20 +318,32 @@ namespace Column.Parsing
                             Res.Add("Oper", "*");
                         }
                     }
-                    else if(Code[i]=='%')
+                    else if (Code[i] == '%')
                     {
                         Res.Add("Oper", "%");
                     }
-                    else if(Code[i]=='=')
+                    else if (Code[i] == '=')
                     {
-                        if(Code[i+1]=='=')
+                        if (Code[i + 1] == '=')
                         {
                             Res.Add("Oper", "==");
                             i++;
                         }
+                        else if(Char.IsLetterOrDigit(Code[i + 1]))
+                        {
+                            i++;
+                            string name = "";
+                            while (Char.IsLetterOrDigit(Code[i]))
+                            {
+                                name += Code[i];
+                                i++;
+                            }
+                            i--;
+                            Res.Add("Val", name);
+                        }
                         else
                         {
-                            throw new Exception();
+                            Res.Add("Oper", "=");
                         }
                     }
                     else if (Code[i] == '>')
@@ -322,7 +353,7 @@ namespace Column.Parsing
                             Res.Add("Oper", ">=");
                             i++;
                         }
-                        else if(Code[i + 1] == '>')
+                        else if (Code[i + 1] == '>')
                         {
                             Res.Add("Oper", ">>");
                             i++;
@@ -397,7 +428,7 @@ namespace Column.Parsing
                             Res.Add("Oper", "~");
                         }
                     }
-                    else if(Code[i]=='_')
+                    else if (Code[i] == '_')
                     {
                         Res.Add("Oper", "_");
                     }

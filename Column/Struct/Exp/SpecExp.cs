@@ -79,15 +79,15 @@ namespace Column.Struct.Exp
     }
     class EvalVariableExp:IExp
     {
-        IExp LeVarGov;
-        public EvalVariableExp(IExp gv,int ln)
+        IExp VarPtr;
+        public EvalVariableExp(IExp vp,int ln)
         {
-            this.LeVarGov = gv;
+            this.VarPtr = vp;
             this.Line = ln;
         }
         public override object Eval(Contex c)
         {
-            return (LeVarGov.Eval(c) as ColumnData).Value;
+            return (VarPtr.Eval(c) as ColumnData).Value;
         }
     }
 }

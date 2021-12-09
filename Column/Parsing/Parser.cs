@@ -538,7 +538,7 @@ namespace Column.Parsing
                 }
                 if (SC[i].Command == "Oper" && BraceCounter == 0 && BraketCounter == 0)
                 {
-                    if ((SC[i].Args == "~" || SC[i].Args == "~~" || SC[i].Args == "_") && Rank <= 1)
+                    if ((SC[i].Args == "~" || SC[i].Args == "~~" || SC[i].Args == "_" || SC[i].Args=="=") && Rank <= 1)
                     {
                         OperatorIndex = i;
                         Rank = 1;
@@ -687,6 +687,27 @@ namespace Column.Parsing
                     }
                     return ret;
                 }
+                else if (SC[0].Command == "Ptr")
+                {
+                    int j;
+                    IExp ret = ParseVar(SC, c, db, out j, false);
+                    if (SC.Length != j)
+                    {
+                        db.Error("Line " + SC[0].Line + ": Parsing Error: " + "'|' expected");
+                    }
+                    return ret;
+                }
+                else if(SC[0].Command=="Val")
+                {
+
+                    int j;
+                    IExp ret = new EvalVariableExp(new EvalVariableExp(ParseVar(SC, c, db, out j, false), SC[0].Line),SC[0].Line);
+                    if (SC.Length != j)
+                    {
+                        db.Error("Line " + SC[0].Line + ": Parsing Error: " + "'|' expected");
+                    }
+                    return ret;
+                }
                 else
                 {
                     db.Error("Line " + SC[0].Line + ": Parsing Error: " + "unexpected code");
@@ -743,6 +764,8 @@ namespace Column.Parsing
                         return new LNotExp(ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
                     case "_":
                         return new NegExp(ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
+                    case "=":
+                        return new EvalVariableExp(ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
                     default:
                         db.Error("Line " + SC[OperatorIndex].Line + ": Parsing Error: " + "unknown operator");
                         throw new Exception();
