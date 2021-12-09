@@ -76,6 +76,30 @@ namespace Column
         {
             FuncData.Add(name, func);
         }
+        //Ptr things
+        public void SetVar(string name,ColumnData change)
+        {
+            if (!SetV(name, change))
+            {
+                RootData[name] = change;
+            }
+        }
+        private bool SetV(string name,ColumnData change)
+        {
+            if (RootData.Exist(name))
+            {
+                RootData[name]=change;
+                return true;
+            }
+            else if (Parent != null)
+            {
+                return Parent.SetV(name, change);
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         //ContexFrames
         public void Push()

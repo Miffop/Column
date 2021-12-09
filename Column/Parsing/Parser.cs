@@ -49,6 +49,42 @@ namespace Column.Parsing
                     Code.Add(new SetCom(VarExp, ValExp));
                     //db.Error("Line " + SC[i].Line + ": Parsing Error: " + "'::' expected");
                 }
+                else if(SC[i].Command=="Ptr")
+                {
+                    SudoCode Sub = SC.SubCode(i);
+                    int j;
+                    IExp VarExp = ParseVar(Sub, c, db, out j, false);
+                    i += j;
+                    if (SC[i].Command != "::")
+                    {
+                        db.Error("Line " + SC[i].Line + ": Parsing Error: " + "'::' expected");
+                    }
+                    i++;
+                    int BraceCounter = 0;
+                    j = 0;
+                    int Idx = i;
+                    while (BraceCounter != 0 || SC[i].Command != ";")
+                    {
+                        if (SC[i].Command == "Brace")
+                        {
+                            if (SC[i].Args == "/" || SC[i].Args == "(") BraceCounter++;
+                            else if (SC[i].Args == "\\" || SC[i].Args == ")") BraceCounter--;
+                        }
+                        i++;
+                        j++;
+                    }
+                    IExp ValExp = ParseExp(SC.SubCode(Idx, j), c, db);
+                    //Code.Add(new SetCom(VarExp, ValExp));
+                    if(VarExp is VarExp)
+                    {
+                        string N = (VarExp as VarExp).Name;
+                        Code.Add(new ChangeVarCommand(N, ValExp));
+                    }
+                    else
+                    {
+                        Code.Add(new ChangeSubCommand(VarExp, ValExp));
+                    }
+                }
                 else if (SC[i].Command == "Run")
                 {
                     int j = i;

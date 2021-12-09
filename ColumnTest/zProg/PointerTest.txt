@@ -1,9 +1,22 @@
 ﻿
 #i::4;
 #iPtr :: :i;
+:j :: #iPtr;
+#j::#j+1;
 
-@Console|WriteLine(#i);
-@Console|WriteLine(=iPtr);
-@Console|WriteLine(=#iPtr);
+@Console|Write(#i);
+@Console|Write(=iPtr);
+@Console|Write(=#iPtr);
+@Console|Write(#j);
+@Console|WriteLine();
+
+#P::"Hello";
+:P|P :: :P;
+
+@Console|WriteLine(#P);
+@Console|WriteLine(#P|P);
+@Console|WriteLine(#P|P|P);
+@Console|WriteLine(#P|P|P|P);
+@Console|WriteLine(#P|P|P|P|P);
 
 @Console|ReadKey();

@@ -18,7 +18,7 @@ namespace Column.Struct.Exp
     }
     class VarExp : IExp
     {
-        string Name;
+        public string Name { get; private set; }
         public VarExp(string Vn,int ln)
         {
             this.Name = Vn;
@@ -32,8 +32,8 @@ namespace Column.Struct.Exp
     }
     class ConstSubExp:IExp
     {
-        IExp Var;
-        string SubName;
+        public IExp Var { get; private set; }
+        public string SubName { get; private set; }
         public ConstSubExp(IExp v,string Sn,int ln)
         {
             this.Var = v;
@@ -47,7 +47,8 @@ namespace Column.Struct.Exp
     }
     class IndexSubExp:IExp
     {
-        IExp V, S;
+        public IExp V { get; private set; }
+        public IExp S { get; private set; }
         public IndexSubExp(IExp v,IExp s,int ln)
         {
             this.V = v;
@@ -65,9 +66,9 @@ namespace Column.Struct.Exp
             {
                 return (V.Eval(c) as ColumnData)[((int)sub).ToString()];
             }
-            else if(sub is float)
+            else if(sub is double)
             {
-                return (V.Eval(c) as ColumnData)[((float)sub).ToString()];
+                return (V.Eval(c) as ColumnData)[((double)sub).ToString()];
             }
             else
             {

@@ -50,6 +50,8 @@
     <Compile Include="Struct\Block.cs" />
     <Compile Include="Struct\BlockDo.cs" />
     <Compile Include="Struct\Command.cs" />
+    <Compile Include="Struct\Commands\ChangeSubCommand.cs" />
+    <Compile Include="Struct\Commands\ChangeVarCommand.cs" />
     <Compile Include="Struct\Commands\DoCommand.cs" />
     <Compile Include="Struct\Commands\FlagCommand.cs" />
     <Compile Include="Struct\Commands\CondCommand.cs" />
