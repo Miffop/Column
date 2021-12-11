@@ -49,11 +49,12 @@ namespace Column.Struct
 
             object ret = c.GetVar("Result").Value;
             c.Pop();
+            /*
             if(ret is ColumnData)
             {
                 c.db.Error("Runtime error: " + "Method cannot return a reference");
             }
-
+            */
             return ret;
         }
         public Method ToMethod()

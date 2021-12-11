@@ -1,0 +1,35 @@
+﻿!meth Stack()
+//
+	#topPtr::@Null();
+	#stk:: :topPtr;
+	#Result:: #stk;
+\\
+!meth Stack|Peek(#stk)
+//
+	#Result::=(=stk);
+\\
+!meth Stack|Push(#stk,#Val)
+//
+	:topPtr::#stk;
+	#New::#Val;
+	#New|Prev::#topPtr;
+	#topPtr:: :New;
+\\
+!meth Stack|Pop(#stk)
+//
+	:topPtr::#stk;
+	:Top::#topPtr;
+	#Result::#Top;
+	#topPtr::#Top|Prev;
+\\
+
+#stk::@Stack();
+@Stack|Push(#stk,10);
+@Stack|Push(#stk,20);
+@Stack|Push(#stk,30);
+
+@Console|WriteLine(@Stack|Pop(#stk));
+@Console|WriteLine(@Stack|Pop(#stk));
+@Console|WriteLine(@Stack|Pop(#stk));
+
+@Console|ReadKey();

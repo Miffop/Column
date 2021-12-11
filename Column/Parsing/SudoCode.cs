@@ -282,10 +282,9 @@ namespace Column.Parsing
                     }
                     else if (Char.IsLetter(Code[i]))
                     {
-                        db.Error("Line " + Res.Line + ": Parsing Error: " + "unexpected lexis");
-                        i++;
+                        //i++;
                         string name = "";
-                        while (Char.IsLetterOrDigit(Code[i]))
+                        while (Char.IsLetterOrDigit(Code[i]) || Code[i]=='|')
                         {
                             name += Code[i];
                             if (Code[i] == '\n')
@@ -295,7 +294,16 @@ namespace Column.Parsing
                             i++;
                         }
                         i--;
-                        Res.Add("Word", name);
+                        Label Current = Res[Res.Length - 1];
+                        if (Current.Command=="Ctrl" && Current.Args=="meth")
+                        {
+                            Res.Add("Meth", name);
+                        }
+                        else
+                        {
+                            db.Error("Line " + Res.Line + ": Parsing Error: " + "unexpected lexis");
+                        }
+                        //Res.Add("Word", name);
                     }
                     //Operations
                     else if (Code[i] == '+')
