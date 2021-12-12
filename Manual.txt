@@ -34,10 +34,11 @@ Operations:
   .. logic or
   ^^ logic xor
   ~~ logic not
+  = get value
 
 Operations order:
   1)()
-  2)~,~~,_
+  2)~,~~,_,=
   3)**
   4)*,/,%
   5)+,-
