@@ -1,12 +1,12 @@
 Variables:
 #<variableName>::<valueOrExpression>;
 #<varName>|<subVarName>::<valueOrExpresion>;
-#<varName>|(<ExpresionReturningSubVatName>)::<valueOrExprsion>;
-#<varName>|<subVarName1>|<subVarName2>::<valueOrExpresion>;
+#<varName>|(<ExpresionReturningSubVarName>)::<valueOrExprsion>;
+#<varName>|<subVarName1>|<subVarName2>::<valueOrExpresion>;{every variable or subvariable may have subvariables}
 
 Literals:
 "someString"-string
-'c'-charecter
+'c'-charecter{its code stored as an integer}
 383 - integer
 3.14 - real
 
@@ -52,7 +52,7 @@ Operations order:
   14)..
 
 Operators:
-  !if(<condition1>)
+  !if(<condition1>){0-false, noneZeroValue-true}
   //
     <...>
   \\
@@ -114,11 +114,11 @@ Comments:
   {otherComment}
 
 Pointers:
-  #Variable1:: :Variable2 {get the pointer to the variable2 and put it into the other variable1}
-  #Variable3:: =Variable1 {get the value of the pointer stored in Variable1}{Variable contains the value stored in Variable2}
+  #Variable1:: :Variable2; {get the pointer to the variable2 and put it into the other variable1}
+  #Variable3:: =Variable1; {get the value of the pointer stored in Variable1}{Variable contains the value stored in Variable2}
                {'='can be a prefix or an operation so this spelling "=#Variable1" is also valid}
                {be careful: if want to get the value of double pointer don't write like this "==DoubelPtr" instead write "=(=DoublePtr)" or "= =DoublePtr"}
-  :Variable4:: #Variable1 {make the Variable4 act as the variable that Variable1 points on}
+  :Variable4:: #Variable1; {make the Variable4 act as the variable that Variable1 points on}
               {every change in the value or subvariables' values of Variable4 will affect Variable2}
   
 
