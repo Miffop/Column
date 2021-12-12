@@ -95,22 +95,32 @@ Operators:
   !nop - do nothing
 
 Methods:
-  !meth $<methodName1>(#<argument1>,#<argument2>,...)//Creating method
+  !meth $<methodName1>(#<argument1>,#<argument2>,...){Creating method}
   //
      <...>
-     !meth $<methodName2>()
+     !meth <methodName2>(){Createing a method inside the method}
      //
+        {When Creating the method '$' sign before its name is optional}
         <...>
      \\
      <...>
      Result::<someExpression>;
   \\
-  @<methodName1>(<someExpression1>,<someExpression2>,<someExpression3>,...);//method Call
+  @<methodName1>(<someExpression1>,<someExpression2>,<someExpression3>,...);{method Call}
 
 Comments:
   {someComment}
   <...>
   {otherComment}
+
+Pointers:
+  #Variable1:: :Variable2 {get the pointer to the variable2 and put it into the other variable1}
+  #Variable3:: =Variable1 {get the value of the pointer stored in Variable1}{Variable contains the value stored in Variable2}
+               {'='can be a prefix or an operation so this spelling "=#Variable1" is also valid}
+               {be careful: if want to get the value of double pointer don't write like this "==DoubelPtr" instead write "=(=DoublePtr)" or "= =DoublePtr"}
+  :Variable4:: #Variable1 {make the Variable4 act as the variable that Variable1 points on}
+              {every change in the value or subvariables' values of Variable4 will affect Variable2}
+  
 
 P.S:
   you can find example programs in /ColumnTest/zProg
