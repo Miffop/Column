@@ -50,9 +50,9 @@ namespace Column.Struct.Exp
             {
                 return prev + (sb as string);
             }
-            else if (sb is float)
+            else if (sb is double)
             {
-                return prev + ((float)sb);
+                return prev + ((double)sb);
             }
             else if (sb is int)
             {

@@ -21,9 +21,9 @@ namespace Column.Struct.Exp
                 {
                     return (string)a == (string)b ? 1 : 0;
                 }
-                else if (a is float || b is float)
+                else if (a is double || b is double)
                 {
-                    return (float)a == (float)b ? 1 : 0;
+                    return Convert.ToDouble(a) == Convert.ToDouble(b) ? 1 : 0;
                 }
                 else if (a is int || b is int)
                 {
@@ -60,9 +60,9 @@ namespace Column.Struct.Exp
                 {
                     return (string)a != (string)b ? 1 : 0;
                 }
-                else if (a is float || b is float)
+                else if (a is double || b is double)
                 {
-                    return (float)a != (float)b ? 1 : 0;
+                    return Convert.ToDouble(a) != Convert.ToDouble(b) ? 1 : 0;
                 }
                 else if (a is int || b is int)
                 {
@@ -96,9 +96,9 @@ namespace Column.Struct.Exp
 
             try
             {
-                if (a is float || b is float)
+                if (a is double || b is double)
                 {
-                    return (float)a > (float)b ? 1 : 0;
+                    return Convert.ToDouble(a) > Convert.ToDouble(b) ? 1 : 0;
                 }
                 else if (a is int || b is int)
                 {
@@ -132,9 +132,9 @@ namespace Column.Struct.Exp
 
             try
             {
-                if (a is float || b is float)
+                if (a is double || b is double)
                 {
-                    return (float)a < (float)b ? 1 : 0;
+                    return Convert.ToDouble(a) < Convert.ToDouble(b) ? 1 : 0;
                 }
                 else if (a is int || b is int)
                 {
@@ -168,9 +168,9 @@ namespace Column.Struct.Exp
 
             try
             {
-                if (a is float || b is float)
+                if (a is double || b is double)
                 {
-                    return (float)a >= (float)b ? 1 : 0;
+                    return Convert.ToDouble(a) >= Convert.ToDouble(b) ? 1 : 0;
                 }
                 else if (a is int || b is int)
                 {
@@ -202,9 +202,9 @@ namespace Column.Struct.Exp
             object b = B.Eval(c);
             try
             {
-                if (a is float || b is float)
+                if (a is double || b is double)
                 {
-                    return (float)a <= (float)b ? 1 : 0;
+                    return Convert.ToDouble(a) <= Convert.ToDouble(b) ? 1 : 0;
                 }
                 else if (a is int || b is int)
                 {

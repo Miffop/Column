@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Column.Struct
+﻿namespace Column.Struct
 {
     abstract class Command
     {

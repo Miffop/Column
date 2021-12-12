@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Column.Struct.Commands
+﻿namespace Column.Struct.Commands
 {
     class FlagCommand:Command
     {

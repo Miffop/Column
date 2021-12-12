@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Column.Parsing;
+﻿using Column.Parsing;
 using Column.Struct;
+using System;
+using System.Collections.Generic;
 
 namespace Column
 {

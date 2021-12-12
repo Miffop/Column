@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Column
+﻿namespace Column
 {
     public delegate object Method(params object[] Args);
 }

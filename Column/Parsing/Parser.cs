@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Column.Struct;
-using Column.Struct.Exp;
+﻿using Column.Struct;
 using Column.Struct.Commands;
+using Column.Struct.Exp;
+using System;
+using System.Collections.Generic;
 
 namespace Column.Parsing
 {

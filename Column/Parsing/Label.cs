@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Column.Parsing
+﻿namespace Column.Parsing
 {
     public class Label
     {
