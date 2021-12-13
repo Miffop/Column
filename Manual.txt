@@ -11,12 +11,12 @@ Literals:
 3.14 - real
 
 Operations:
-  + add
+  + add {if you add string and int, int will be tread as char}
   - subract
   * multiply
   / divide
   % module
-  _ negate
+  _ negate {you CANNOT do like this: #a::-1}{only like this #a::_1}
   ** power
   == equal
   != not equal
@@ -101,7 +101,7 @@ Methods:
      <...>
      !meth <methodName2>(){Createing a method inside the method}
      //
-        {When Creating the method '$' sign before its name is optional}
+        {When Creating the method '$' sign before its name is optional(but NOT ALWAYS)}
         <...>
      \\
      <...>
@@ -121,7 +121,22 @@ Pointers:
                {be careful: if want to get the value of double pointer don't write like this "==DoubelPtr" instead write "=(=DoublePtr)" or "= =DoublePtr"}
   :Variable4:: #Variable1; {make the Variable4 act as the variable that Variable1 points on}
               {every change in the value or subvariables' values of Variable4 will affect Variable2}
-  
+
+Special sybols in strings and chars:
+  \n - New Line
+  \a - apostrophe
+  \d - quotation mark
+  \b - backslash
+
+Variable and method naming:
+  Variable and method names may contain only letters and digits
+  for example: #123,#123abc,#abc,#abc123,#a1b2c3,#1a2b3c
+  BUT if then you want to define method and its name starts with a digit you must use '$' before method's name
+  for example:
+    !meth 3()//<...>\\ {invalid}
+    !meth $3()//<...>\\ {valid}
+    !meth m3()//<...>\\ {valid}
+    
 
 P.S:
   you can find example programs in /ColumnTest/zProg

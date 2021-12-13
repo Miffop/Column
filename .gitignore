@@ -1,7 +1,11 @@
 /Column/obj
-/Column/bin
+/Column/bin/Debug
 /ColumnTest/obj
-/ColumnTest/bin
-/.vs
+/ColumnTest/bin/Debug
+/.vs/
 
-ColumnTest\Goals.txt
+
+Column/bin/Release/Column.pdb
+
+ColumnTest/bin/Release/ColumnTest.exe.config
+ColumnTest/bin/Release/ColumnTest.pdb

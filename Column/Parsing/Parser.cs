@@ -255,7 +255,7 @@ namespace Column.Parsing
                         i++;
                         if (SC[i].Command != "Meth")
                         {
-                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "'(' expected");
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "method's name expected");
                         }
                         string MethName = SC[i].Args;
                         i++;

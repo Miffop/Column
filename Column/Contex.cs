@@ -73,7 +73,14 @@ namespace Column
         }
         public void StateFunc(string name,Method func)
         {
-            FuncData.Add(name, func);
+            try
+            {
+                FuncData.Add(name, func);
+            }
+            catch
+            {
+                db.Error("Error: " + "cannot add method. $"+name+" already exists");
+            }
         }
         //Ptr things
         public void SetVar(string name,ColumnData change)

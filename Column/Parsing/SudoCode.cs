@@ -66,6 +66,8 @@ namespace Column.Parsing
 
             SudoCode Res = new SudoCode();
             for (int i = 0; i < Code.Length; i++)
+            {
+                int CurrentLine = Res.Line;
                 try
                 {
                     if (Code[i] == '/')
@@ -115,7 +117,7 @@ namespace Column.Parsing
                         {
                             Res.Add("::", "");
                         }
-                        else if(Char.IsLetterOrDigit(Code[i]))
+                        else if (Char.IsLetterOrDigit(Code[i]))
                         {
                             string name = "";
                             while (Char.IsLetterOrDigit(Code[i]))
@@ -230,6 +232,7 @@ namespace Column.Parsing
                         }
                         name = name.Replace("\\n", "\n");
                         name = name.Replace("\\a", "\'");
+                        name = name.Replace("\\b", "\\");
                         name = name.Replace("\\d", "\"");
                         Res.Add("String", name);
                     }
@@ -248,6 +251,7 @@ namespace Column.Parsing
                         }
                         name = name.Replace("\\n", "\n");
                         name = name.Replace("\\a", "\'");
+                        name = name.Replace("\\b", "\\");
                         name = name.Replace("\\d", "\"");
                         if (name.Length != 1)
                         {
@@ -284,7 +288,7 @@ namespace Column.Parsing
                     {
                         //i++;
                         string name = "";
-                        while (Char.IsLetterOrDigit(Code[i]) || Code[i]=='|')
+                        while (Char.IsLetterOrDigit(Code[i]) || Code[i] == '|')
                         {
                             name += Code[i];
                             if (Code[i] == '\n')
@@ -295,7 +299,7 @@ namespace Column.Parsing
                         }
                         i--;
                         Label Current = Res[Res.Length - 1];
-                        if (Current.Command=="Ctrl" && Current.Args=="meth")
+                        if (Current.Command == "Ctrl" && Current.Args == "meth")
                         {
                             Res.Add("Meth", name);
                         }
@@ -337,7 +341,7 @@ namespace Column.Parsing
                             Res.Add("Oper", "==");
                             i++;
                         }
-                        else if(Char.IsLetterOrDigit(Code[i + 1]))
+                        else if (Char.IsLetterOrDigit(Code[i + 1]))
                         {
                             i++;
                             string name = "";
@@ -447,8 +451,9 @@ namespace Column.Parsing
                 }
                 catch
                 {
-                    db.Error("Line " + Res.Line + ": Parsing Error: " + "Analisys failed");
+                    db.Error("Line " + CurrentLine + ": Parsing Error: " + "Analisys failed");
                 }
+            }
             return Res;
         }
     }
