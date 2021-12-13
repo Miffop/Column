@@ -1,0 +1,35 @@
+@Console|WriteLine(<string/int/float>,...); {writes the data to the console and moves to a new line}
+@Console|WriteLine(<string/int/float>,...); {write the data to the console}
+@Console|WriteChar(<int>,...); {writes charecters to the console}
+@Console|ReadLine(); {reads line from user input and returns it}
+@Console|ReadKey(); {returns the key user pressed}
+@Console|Clear(); {cleans the console}
+@Console|Title(<string>); {sets the console's window title}
+
+@String|Char(<string>,<int>); {returns the charecter of the string at the certan index}{first cherecter has index 0}
+@String|Sub(<string>,<int>); {returns the substring that goes from index to the end of the string}
+@String|Sub(<string>,<int>,<int>); {returns the substring that goes from the first index to the second one}
+@String|Length(<string>); {returns the string's length}
+@String(<anything>); {convers to string}
+
+@Int(<anything>); {converts to integer}
+@Int|Parse(<string>); {converts the string to an integer}
+@Int|MaxValue(); {returns the largest value of the integer}
+@Int|MinVaule(); {returns the smallest value of the integer}
+
+@Float(<anything>); {converts to real number}
+@Float|Parse(<string>); {converts string to real number}
+
+@Char|IsLetter(<int>); {returns 1 if the charecter is a letter else returns 0}
+@Char|IsDigit(<int>); {returns 1 if the charecter is a digit else returns 0}
+@Char|IsLetterOrDigit(<int>); {returns 1 if the charecter is a letter or digit else returns 0}
+@Char|IsUpper(<int>); {returns 1 if the charecter is a upper case letter else returns 0}
+@Char|IsLower(<int>); {returns 1 if the charecter is a lower case letter else returns 0}
+@Char|IsSymbol(<int>); {returns 1 if the charecter is a symbol else returns 0}
+@Char|IsSymbol(<int>); {returns 1 if the charecter is a space, tab or newline else returns 0}
+@Char|ToUpper(<int>); {converts to upper case letter}
+@Char|ToLower(<int>); {converts to lower case letter}
+
+
+
+
