@@ -140,3 +140,4 @@ Variable and method naming:
 
 P.S:
   you can find example programs in /ColumnTest/zProg
+  yon can find descriptions of stdlib's methods in DefaultLib.txt
