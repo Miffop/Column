@@ -51,7 +51,7 @@ namespace Column.Struct.Exp
             {
                 if (a is int || b is int)
                 {
-                    return (int)a & (int)b;
+                    return (int)a | (int)b;
                 }
                 else
                 {
