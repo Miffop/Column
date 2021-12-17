@@ -61,6 +61,13 @@ namespace Column.Parsing
 
             return SC;
         }
+        public Label Last
+        {
+            get
+            {
+                return this.Code[this.Code.Count-1];
+            }
+        }
         public static SudoCode Parse(string Code, Debugger db)
         {
 
@@ -298,10 +305,17 @@ namespace Column.Parsing
                             i++;
                         }
                         i--;
-                        Label Current = Res[Res.Length - 1];
-                        if (Current.Command == "Ctrl" && Current.Args == "meth")
+                        if (Res.Last.Command == "Ctrl" && Res.Last.Args == "meth")
                         {
                             Res.Add("Meth", name);
+                        }
+                        else if(name=="has")
+                        {
+                            Res.Add("Oper", "has");
+                        }
+                        else if(name=="sub")
+                        {
+                            Res.Add("Oper", "sub");
                         }
                         else
                         {

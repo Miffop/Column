@@ -58,24 +58,19 @@ namespace Column.Struct.Exp
         public override object Eval(Contex c)
         {
             object sub = S.Eval(c);
-            if(sub is string)
+            return (V.Eval(c) as ColumnData)[GetSubVariableName(sub, this.Line, c.db)];
+        }
+        public static string GetSubVariableName(object sub,int Line,Debugger db)
+        {
+            if (sub is string || sub is int || sub is double)
             {
-                return (V.Eval(c) as ColumnData)[sub as string];
-            }
-            else if(sub is int)
-            {
-                return (V.Eval(c) as ColumnData)[((int)sub).ToString()];
-            }
-            else if(sub is double)
-            {
-                return (V.Eval(c) as ColumnData)[((double)sub).ToString()];
+                return sub.ToString();
             }
             else
             {
-                c.db.Error("Line " + this.Line + ": Runtime Error: " + "wrong type in the index");
+                db.Error("Line " + Line + ": Runtime Error: " + "wrong type in the index");
                 throw new Exception();
             }
-            
         }
     }
     class EvalVariableExp:IExp

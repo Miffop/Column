@@ -54,6 +54,7 @@
     <Content Include="zProg\Madness.txt" />
     <Content Include="zProg\BFI.txt" />
     <Content Include="zProg\Stack.txt" />
+    <Content Include="zProg\SubHasTest.txt" />
     <Content Include="zProg\TryCatchTest.txt" />
     <Content Include="zProg\Truth_machine.txt" />
   </ItemGroup>

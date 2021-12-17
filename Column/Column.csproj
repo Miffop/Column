@@ -63,6 +63,7 @@
     <Compile Include="Struct\Exp\LogicaExp.cs" />
     <Compile Include="Struct\Exp\LogicExp.cs" />
     <Compile Include="Struct\Exp\MethExp.cs" />
+    <Compile Include="Struct\Exp\PtrExp.cs" />
     <Compile Include="Struct\Exp\SpecExp.cs" />
     <Compile Include="Struct\Exp\MathsExp.cs" />
     <Compile Include="Struct\IExp.cs" />

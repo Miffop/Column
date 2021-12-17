@@ -46,7 +46,7 @@ namespace Column.Struct.Exp
         {
             string prev = Prev.Eval(c) as string + "|";
             object sb = Sub.Eval(c);
-            if(sb is string)
+            /*if(sb is string)
             {
                 return prev + (sb as string);
             }
@@ -62,7 +62,8 @@ namespace Column.Struct.Exp
             {
                 c.db.Error("Line " + this.Line + ": Runtime Error: " + "wrong type in the index");
                 throw new Exception();
-            }
+            }*/
+            return prev + IndexSubExp.GetSubVariableName(sb, this.Line, c.db);
         }
     }
     class FuncExp : IExp

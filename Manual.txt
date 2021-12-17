@@ -35,6 +35,8 @@ Operations:
   ^^ logic xor
   ~~ logic not
   = get value
+  <pointer> has <subVariableName> if pointer contains this subvariable returns 1 else 0
+  <pointer> sub <subVariableName> returns subvariable of the pointer(if subvariable doesn't exists it creates one)
 
 Operations order:
   1)()
@@ -51,6 +53,7 @@ Operations order:
   12)&&
   13)^^
   14)..
+  15)has,sub
 
 Operators:
   !if(<condition1>){0-false, noneZeroValue-true}

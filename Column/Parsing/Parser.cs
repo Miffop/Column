@@ -638,6 +638,12 @@ namespace Column.Parsing
                         OperatorIndex = i;
                         Rank = 13;
                     }
+                    else if ((SC[i].Args == "sub" || SC[i].Args == "has") && Rank <= 14)
+                    {
+                        OperatorIndex = i;
+                        Rank = 14;
+                    }
+
                 }
             }
             if (OperatorIndex == -1)
@@ -801,6 +807,10 @@ namespace Column.Parsing
                         return new NegExp(ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
                     case "=":
                         return new EvalVariableExp(ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
+                    case "has": 
+                        return new HasExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
+                    case "sub": 
+                        return new IndexSubExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
                     default:
                         db.Error("Line " + SC[OperatorIndex].Line + ": Parsing Error: " + "unknown operator");
                         throw new Exception();

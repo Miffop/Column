@@ -1,0 +1,51 @@
+﻿#a::0;
+#a|0::1;
+#a|2::2;
+#a|1::3;
+#a|5::4;
+
+!for(#i::0;#i<6;#i::#i+1;)
+//
+	!if(:a has #i)
+	//
+		@Console|WriteLine(#a|(#i));
+		@Console|WriteLine(=(:a sub #i));
+	\\
+	!else
+	//
+		@Console|WriteLine("#a|",#i," doesn't exist");
+	\\
+\\
+
+@Console|ReadKey();
+
+!try
+//
+	@Console|WriteLine(#a|(:a));
+\\
+!catch
+//
+	@Console|WriteLine("error");
+\\
+!try
+//
+	@Console|WriteLine(#a|(@Null()));
+\\
+!catch
+//
+	@Console|WriteLine("error");
+\\
+
+@Console|ReadKey();
+
+#b|(2.1)::0;
+#b|3::0;
+#b|Hello::0;
+@Console|WriteLine(#b|(21.0/10));
+@Console|WriteLine(#b|(1+2));
+@Console|WriteLine(#b|("Hel"+"lo"));
+
+
+
+@Console|ReadKey();
+

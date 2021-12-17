@@ -24,7 +24,8 @@ namespace Column.Struct.Commands
                 IndexSubExp PVar = Var as IndexSubExp;
                 ColumnData V = (ColumnData)(PVar.V.Eval(c));
                 object Index = PVar.S.Eval(c);
-                if(Index is string)
+                V[IndexSubExp.GetSubVariableName(Index, PVar.S.Line, c.db)]= (ColumnData)Ptr.Eval(c);
+                /*if(Index is string)
                 {
                     V[(string)Index] = (ColumnData)Ptr.Eval(c);
                 }
@@ -39,7 +40,7 @@ namespace Column.Struct.Commands
                 else
                 {
                     c.db.Error("Line " + PVar.S.Line + ": Runtime Error: " + "wrong type in the index");
-                }
+                }*/
             }
             return Command.None;
         }
