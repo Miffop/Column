@@ -25,13 +25,13 @@ namespace Column.Struct.Exp
                 {
                     return Convert.ToDouble(a) == Convert.ToDouble(b) ? 1 : 0;
                 }
-                else if (a is int || b is int)
+                else if (a is int && b is int)
                 {
                     return (int)a == (int)b ? 1 : 0;
                 }
                 else
                 {
-                    return a == b;
+                    return a == b ? 1 : 0;
                 }
             }
             catch
@@ -64,7 +64,7 @@ namespace Column.Struct.Exp
                 {
                     return Convert.ToDouble(a) != Convert.ToDouble(b) ? 1 : 0;
                 }
-                else if (a is int || b is int)
+                else if (a is int && b is int)
                 {
                     return (int)a != (int)b ? 1 : 0;
                 }

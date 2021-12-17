@@ -1,0 +1,120 @@
+#a::1;
+#b::2;
+#c::3;
+
+
+!meth Next(#n)
+//
+    #bit::(#n ^ #n>>1) & 1;
+    #n::(#n & 127)>>1;
+    #Result::#n . (#bit<<6);
+\\
+
+
+!while(1)
+//
+    
+    !meth WriteP(#n)
+    //
+        !if(#n>0)
+        //
+            @Console|Write("+");
+            !if(#n!=1)
+            //
+                @Console|Write(#n);
+            \\
+            @Console|Write("x");
+        \\
+        !else !if(#n<0)
+        //
+            !if(#n!=_1)
+            //
+                @Console|Write(#n);
+            \\
+            !else
+            //
+                @Console|Write("-");
+            \\
+            @Console|Write("x");
+        \\
+    \\
+    !meth WriteQ(#n)
+    //
+        !if(#n>0)
+        //
+            @Console|Write("+",#n);
+        \\
+        !else !if(#n<0)
+        //
+            @Console|Write(#n);
+        \\
+    \\
+    #a::@Next(#a);
+    #b::@Next(#b);
+    #c::@Next(#c);
+    
+    #x|1::(#a+#b*#c) % 32-16;
+    #x|2::(#a*#b+#c) % 32-16;
+
+    !meth change(#a,#b)
+    //
+        :r|a::#a;
+        :r|b::#b;
+        !if(#r|a<#r|b)
+        //
+            #r|i::#r|a;
+            #r|a::#r|b;
+            #r|b::#r|i;
+        \\
+    \\
+    @change(:x|1,:x|2);
+    #p::_(#x|1+#x|2);
+    #q::#x|1*#x|2;
+
+    {@Console|Write(#p,", ",#q,", ",#x|1,", ",#x|2);}
+    @Console|WriteLine("Solve:");
+    @Console|Write("x2");
+    @WriteP(#p);
+    @WriteQ(#q);
+    @Console|WriteLine("=0");
+    !for(#i::3;#i>0;#i::#i-1;)
+    //
+        !meth GetNum(#str)
+        //
+            !repeat
+            //
+                !try
+                //
+                    @Console|Write(#str);
+                    #Result::@Int|Parse(@Console|ReadLine());
+                \\
+                !catch
+                //
+                    #Result::@Null();
+                    @Console|WriteLine("Write the number, pls!");
+                \\
+            \\
+            !while(#Result==@Null());
+        \\
+        @Console|WriteLine(#i," attemps left");
+        #ans|x1::@GetNum("x1=");
+        #ans|x2::@GetNum("x2=");
+        @change(:ans|x1,:ans|x2);
+        !if(#x|1==#ans|x1 && #x|2==#ans|x2)
+        //
+            @Console|WriteLine("Next!");
+            @Console|WriteLine();
+            !break;
+        \\
+        !else !if(#i==1)
+        //
+            @Console|WriteLine("x1 = ",#x|1,", x2 = ",#x|2);
+            @Console|WriteLine();
+        \\
+        !else
+        //
+            @Console|WriteLine("Try again!");
+            @Console|WriteLine();
+        \\
+    \\    
+\\
