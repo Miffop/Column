@@ -2,10 +2,11 @@
 /Column/bin/Debug
 /ColumnTest/obj
 /ColumnTest/bin/Debug
-/.vs/
+.vs
 
 
 Column/bin/Release/Column.pdb
 
 ColumnTest/bin/Release/ColumnTest.exe.config
 ColumnTest/bin/Release/ColumnTest.pdb
+desktop.ini
