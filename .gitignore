@@ -4,6 +4,7 @@
 /ColumnTest/bin/Debug
 .vs/
 
+*.suo
 
 Column/bin/Release/Column.pdb
 
