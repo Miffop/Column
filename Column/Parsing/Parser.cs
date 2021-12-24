@@ -26,10 +26,11 @@ namespace Column.Parsing
                     int j;
                     IExp VarExp = ParseVar(Sub, c, db, out j, false);
                     i += j;
-                    if (SC[i].Command != "::")
+                    if (SC[i].Command != "::" && SC[i].Command != "OperOn")
                     { 
                         db.Error("Line " + SC[i].Line + ": Parsing Error: " + "'::' expected"); 
                     }
+                    Label Oper = SC[i];
                     i++;
                     int BraceCounter = 0;
                     j = 0;
@@ -44,7 +45,21 @@ namespace Column.Parsing
                         i++;
                         j++;
                     }
-                    IExp ValExp = ParseExp(SC.SubCode(Idx, j), c, db);
+                    IExp ValExp = null;
+                    if (j != 0)
+                    {
+                        ValExp = ParseExp(SC.SubCode(Idx, j), c, db);
+                    }
+                    if (Oper.Command!="::")
+                    {
+                        bool IsUn;
+                        bool IsNull = (ValExp == null);
+                        ValExp = ParseOperation(Oper, new EvalVariableExp(VarExp, VarExp.Line), ValExp, c, db,out IsUn);
+                        if(IsNull != IsUn)
+                        {
+                            db.Error("Line " + Oper.Line + ": Parsing Error: " + "';' expected");
+                        }
+                    }
                     Code.Add(new SetCom(VarExp, ValExp));
                     //db.Error("Line " + SC[i].Line + ": Parsing Error: " + "'::' expected");
                 }
@@ -757,64 +772,7 @@ namespace Column.Parsing
             }
             else
             {
-                switch (SC[OperatorIndex].Args)
-                {
-                    case "+":
-                        return new SumExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "-":
-                        return new DiffExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "*":
-                        return new MultExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "/":
-                        return new DivExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "%":
-                        return new ModExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "**":
-                        return new PowExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "==":
-                        return new EqualExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "!=":
-                        return new NotEqualExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case ">":
-                        return new GreaterExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "<":
-                        return new LessExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case ">=":
-                        return new GreaterEqualExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "<=":
-                        return new LessEqualExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case ">>":
-                        return new ShrExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "<<":
-                        return new ShlExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "&":
-                        return new AndExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "^":
-                        return new XorExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "|":
-                        return new OrExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "~":
-                        return new NotExp(ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "&&":
-                        return new LAndExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "^^":
-                        return new LXorExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "||":
-                        return new LOrExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "~~":
-                        return new LNotExp(ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "_":
-                        return new NegExp(ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "=":
-                        return new EvalVariableExp(ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "has": 
-                        return new HasExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    case "sub": 
-                        return new IndexSubExp(ParseExp(SC.SubCode(0, OperatorIndex), c, db), ParseExp(SC.SubCode(OperatorIndex + 1), c, db), SC[OperatorIndex].Line);
-                    default:
-                        db.Error("Line " + SC[OperatorIndex].Line + ": Parsing Error: " + "unknown operator");
-                        throw new Exception();
-                }
+                return ParseOperation(SC[OperatorIndex],SC.SubCode(0, OperatorIndex), SC.SubCode(OperatorIndex + 1), c, db);
             }
         }
         private static IExp ParseVar(SudoCode SC,Contex c,Debugger db,out int index,bool IsFunc)
@@ -881,5 +839,105 @@ namespace Column.Parsing
             }
             return j;
         }
+        private static IExp ParseOperation(Label oper, SudoCode pre, SudoCode post, Contex c, Debugger db)
+        {
+            bool Un;
+            return ParseOperation(oper, pre, post, c, db, out Un);
+        }
+        private static IExp ParseOperation(Label oper, IExp pre, IExp post, Contex c, Debugger db)
+        {
+            bool Un;
+            return ParseOperation(oper, pre, post, c, db, out Un);
+        }
+        private static IExp ParseOperation(Label oper, SudoCode pre, SudoCode post, Contex c, Debugger db, out bool IsUnari)
+        {
+            IExp PreExp=null, PostExp=null;
+            if (pre.Length!=0)
+            {
+                PreExp = ParseExp(pre, c, db);
+            }
+            PostExp = ParseExp(post, c, db);
+            return ParseOperation(oper, PreExp, PostExp, c, db, out IsUnari);
+        }
+        private static IExp ParseOperation(Label oper,IExp pre,IExp post,Contex c,Debugger db,out bool IsUnari)
+        {
+            IsUnari = false;
+            if (post == null)
+            {
+                post = pre;
+                pre = null;
+            }
+            switch (oper.Args)
+            {
+                case "+":
+                    return new SumExp(pre, post, oper.Line);
+                case "-":
+                    if (pre == null)
+                    {
+                        IsUnari = true;
+                        return new NegExp(post, oper.Line);
+                    }
+                    else
+                    {
+                        return new DiffExp(pre, post, oper.Line);
+                    }
+                case "*":
+                    return new MultExp(pre, post, oper.Line);
+                case "/":
+                    return new DivExp(pre, post, oper.Line);
+                case "%":
+                    return new ModExp(pre, post, oper.Line);
+                case "**":
+                    return new PowExp(pre, post, oper.Line);
+                case "==":
+                    return new EqualExp(pre, post, oper.Line);
+                case "!=":
+                    return new NotEqualExp(pre, post, oper.Line);
+                case ">":
+                    return new GreaterExp(pre, post, oper.Line);
+                case "<":
+                    return new LessExp(pre, post, oper.Line);
+                case ">=":
+                    return new GreaterEqualExp(pre, post, oper.Line);
+                case "<=":
+                    return new LessEqualExp(pre, post, oper.Line);
+                case ">>":
+                    return new ShrExp(pre, post, oper.Line);
+                case "<<":
+                    return new ShlExp(pre, post, oper.Line);
+                case "&":
+                    return new AndExp(pre, post, oper.Line);
+                case "^":
+                    return new XorExp(pre, post, oper.Line);
+                case "|":
+                    return new OrExp(pre, post, oper.Line);
+                case "~":
+                    IsUnari = true;
+                    return new NotExp( post, oper.Line);
+                case "&&":
+                    return new LAndExp(pre, post, oper.Line);
+                case "^^":
+                    return new LXorExp(pre, post, oper.Line);
+                case "||":
+                    return new LOrExp(pre, post, oper.Line);
+                case "~~":
+                    IsUnari = true;
+                    return new LNotExp(post, oper.Line);
+                case "_":
+                    IsUnari = true;
+                    return new NegExp(post, oper.Line);
+                case "=":
+                    IsUnari = true;
+                    return new EvalVariableExp(post, oper.Line);
+                case "has":
+                    return new HasExp(pre, post, oper.Line);
+                case "sub":
+                    return new IndexSubExp(pre, post, oper.Line);
+                default:
+                    db.Error("Line " + oper.Line + ": Parsing Error: " + "unknown operator");
+                    throw new Exception();
+            }
+        }
+
     }
 }

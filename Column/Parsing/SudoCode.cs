@@ -132,12 +132,25 @@ namespace Column.Parsing
                                 name += Code[i];
                                 i++;
                             }
-                            i--;
-                            Res.Add("Ptr", name);
+                            if (Code[i] == ':')
+                            {
+                                Res.Add("OperOn", name);
+                            }
+                            else
+                            {
+                                i--;
+                                Res.Add("Ptr", name);
+                            }
                         }
                         else
                         {
-                            throw new Exception();
+                            string name = "";
+                            while (Code[i]!=':')
+                            {
+                                name += Code[i];
+                                i++;
+                            }
+                            Res.Add("OperOn", name);
                         }
 
                     }
