@@ -323,7 +323,7 @@ namespace Column.Parsing
                         i++;
                         if(SC[i].Command!=";")
                         {
-                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "':' expected");
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "';' expected");
                         }
                         Code.Add(new FlagCommand(Command.Break));
                     }
@@ -332,7 +332,7 @@ namespace Column.Parsing
                         i++;
                         if (SC[i].Command != ";")
                         {
-                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "':' expected");
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "';' expected");
                         }
                         Code.Add(new FlagCommand(Command.Continue));
                     }
@@ -344,6 +344,15 @@ namespace Column.Parsing
                             db.Error("Line " + SC[i].Line + ": Parsing Error: " + "':' expected");
                         }
                         Code.Add(new FlagCommand(Command.None));
+                    }
+                    else if (SC[i].Args == "ret")
+                    {
+                        i++;
+                        if (SC[i].Command != ";")
+                        {
+                            db.Error("Line " + SC[i].Line + ": Parsing Error: " + "';' expected");
+                        }
+                        Code.Add(new FlagCommand(Command.Return));
                     }
                     else if(SC[i].Args=="for")
                     {

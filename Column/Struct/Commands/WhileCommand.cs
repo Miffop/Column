@@ -11,15 +11,16 @@
         }
         public override int Run(Contex c)
         {
-
-            while((int)A.Eval(c)!=0)
+            int res=Command.None;
+            while ((int)A.Eval(c)!=0)
             {
-                if(Loop.Run()==Command.Break)
+                res = Loop.Run();
+                if (res>=Command.Break)
                 {
                     break;
                 }
             }
-            return Command.None;
+            return (res == Command.Return) ? res : Command.None;
         }
     }
 }

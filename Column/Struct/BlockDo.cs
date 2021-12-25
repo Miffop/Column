@@ -19,9 +19,9 @@ namespace Column.Struct
             for (int i = 0; i < Code.Count; i++)
             {
                 int ec = Code[i].Run(c);
-                if (ec == Command.Break)
+                if (ec >= Command.Break)
                 {
-                    return Command.Break;
+                    return ec;
                 }
                 else if (ec == Command.Continue)
                 {
