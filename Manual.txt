@@ -16,7 +16,7 @@ Operations:
   * multiply
   / divide
   % module
-  _ negate {you CANNOT do like this: #a::-1}{only like this #a::_1}
+  _ negate {you CAN do like this: #a::-1}{but better use this #a::_1}
   ** power
   == equal
   != not equal
@@ -97,6 +97,7 @@ Operators:
   !break - break out of the cycle
   !continue -move to the next iteration of the cycle
   !nop - do nothing
+  !ret - exit the method
 
 Methods:
   !meth $<methodName1>(#<argument1>,#<argument2>,...){Creating method}
@@ -139,7 +140,14 @@ Variable and method naming:
     !meth 3()//<...>\\ {invalid}
     !meth $3()//<...>\\ {valid}
     !meth m3()//<...>\\ {valid}
-    
+
+ShortCuts:
+  {if you want to add something to the variable you write}
+  #i::#i+1;
+  {previous example is too long, but you can write more concise}
+  #i:+:1;
+  {in colons you can write not only binary operations but also unary operations}
+  #i:_:;{negate the value of variable}
 
 P.S:
   you can find example programs in /ColumnTest/zProg
